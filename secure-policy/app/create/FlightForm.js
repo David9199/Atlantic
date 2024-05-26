@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { ethers } from 'ethers';
 
 const FlightForm = () => {
     const [form, setForm] = useState({
@@ -8,7 +9,7 @@ const FlightForm = () => {
         date: '',
         flightNumber: '',
         ticketNumber: '',
-        amount: ''
+        amount: '1' // 设为 1 Share
     });
 
     const [airports, setAirports] = useState([]);
@@ -26,21 +27,21 @@ const FlightForm = () => {
         };
 
         fetchAirports();
+        fetchFlights();  // 在组件加载时调用 fetchFlights 生成航班数据
     }, []);
 
     const fetchFlights = async () => {
-        if (!form.airport || !form.date) {
-            return;
-        }
-        const selectedAirport = airports.find(airport => airport.name === form.airport);
+        const selectedAirport = form.airport ? airports.find(airport => airport.name === form.airport) : airports[0];
+        const selectedDate = form.date || new Date().toISOString().split('T')[0];
+
         if (selectedAirport) {
-            try {
-                const response = await fetch(`/api/flights?airportId=${selectedAirport.id}&date=${form.date}`);
-                const data = await response.json();
-                setFlights(data);
-            } catch (error) {
-                console.error('Error fetching flights:', error);
-            }
+            const generatedFlights = Array.from({ length: 8 }, (_, index) => ({
+                id: index + 1,
+                flightNumber: `Flight ${index + 1}`,
+                airportId: selectedAirport.id,
+                date: selectedDate
+            }));
+            setFlights(generatedFlights);
         }
     };
 
@@ -71,10 +72,43 @@ const FlightForm = () => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission
-        console.log(form);
+        // 调用智能合约进行授权和购买保险
+        try {
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            await provider.send("eth_requestAccounts", []);
+            const signer = provider.getSigner();
+
+            // 合约地址和ABI
+            const tokenAddress = "0x3f0834c7C2AD202B50861376E108f59534D7a79c";
+            const insuranceAddress = "0xd7e8F6FD9B50B7174a5bBF4649E55e3f5954BC1c";
+            const tokenAbi = ["function approve(address spender, uint256 amount) public returns (bool)"];
+            const insuranceAbi = [
+                "function buyInsurance(address referrer, string memory flightNo, uint256 date, uint256 policyAmount) public"
+            ];
+
+            // 创建合约实例
+            const tokenContract = new ethers.Contract(tokenAddress, tokenAbi, signer);
+            const insuranceContract = new ethers.Contract(insuranceAddress, insuranceAbi, signer);
+
+            // 授权
+            const approveTx = await tokenContract.approve(insuranceAddress, ethers.utils.parseUnits(form.amount, 18));
+            await approveTx.wait();
+
+            // 购买保险
+            const referrer = "0x0000000000000000000000000000000000000000"; // 无推荐人
+            const flightNo = form.flightNumber;
+            const date = Math.floor(new Date(form.date).getTime() / 1000); // 转换为 UNIX 时间戳
+            const policyAmount = ethers.utils.parseUnits(form.amount, 18);
+
+            const buyTx = await insuranceContract.buyInsurance(referrer, flightNo, date, policyAmount);
+            await buyTx.wait();
+
+            console.log("Insurance purchased successfully");
+        } catch (error) {
+            console.error("Error purchasing insurance:", error);
+        }
     };
 
     return (
@@ -142,13 +176,12 @@ const FlightForm = () => {
                             />
                         </div>
                         <div>
-                            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount (Share)</label>
+                            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount (USDT)</label>
                             <input
-                                disabled="true"
                                 type="text"
                                 id="amount"
                                 name="amount"
-                                value="1"
+                                value={form.amount}
                                 onChange={handleChange}
                                 required
                                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"

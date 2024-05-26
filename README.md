@@ -8,12 +8,17 @@ https://github.com/David9199/Atlantic/invitations
 ## 黑客松资料
 作品链接：https://atlantic-ocean-khaki.vercel.app/
 
-## 成员
+## 团队名称
+大航海时代
+## 成员  
 JunGe David Ace
 - 邮箱：tenrolley@gmail.com
-- Github:https://github.com/bellacce
 ## 合约地址
+OInsurance（业务合约）：0xd7e8F6FD9B50B7174a5bBF4649E55e3f5954BC1c
+PrizePool（抽奖池）：0xE845C79D31cD7B3623949Ff7Fc0324B88feC936A
+AON（NFT合约）：0xc0AFa12fc43483FF1b87aD8613Bc6F074C2244F0
+FlightInfo（航班信息）：0x0F4119dE390BC916d0331B97a916B6b327831391
 USDT：0x3f0834c7C2AD202B50861376E108f59534D7a79c
-AOInsurance（业务合约）：0xd7e8F6FD9B50B7174a5bBF4649E55e3f5954BC1c
 ## ERC20 地址(用于团队接收奖励)
 0x74b73FD5B6A4d5A1Bb63f713997A9CBb1dF54815
+  

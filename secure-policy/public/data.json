@@ -1,0 +1,47 @@
+[
+    {
+        "rank": 1,
+        "insurancePolicy": "123456",
+        "flightNumber": "AB123",
+        "date": "2023-06-01",
+        "ticketNumber": "T123456",
+        "status": "Active",
+        "image": "/insurance.jpg"
+    },
+    {
+        "rank": 2,
+        "insurancePolicy": "654321",
+        "flightNumber": "CD456",
+        "date": "2023-06-02",
+        "ticketNumber": "T654321",
+        "status": "Inactive",
+        "image": "/insurance.jpg"
+    },
+    {
+        "rank": 3,
+        "insurancePolicy": "112233",
+        "flightNumber": "EF789",
+        "date": "2023-06-03",
+        "ticketNumber": "T112233",
+        "status": "Claimed",
+        "image": "/insurance.jpg"
+    },
+    {
+        "rank": 4,
+        "insurancePolicy": "223344",
+        "flightNumber": "GH012",
+        "date": "2023-06-04",
+        "ticketNumber": "T223344",
+        "status": "Unclaimed",
+        "image": "/insurance.jpg"
+    },
+    {
+        "rank": 5,
+        "insurancePolicy": "334455",
+        "flightNumber": "IJ345",
+        "date": "2023-06-05",
+        "ticketNumber": "T334455",
+        "status": "Active",
+        "image": "/insurance.jpg"
+    }
+]

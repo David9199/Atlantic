@@ -3,7 +3,7 @@
 大西洋保险为您提供全面的航班延误保险服务。通过简单的登录和购买流程，为您的的旅行买一份保险。
 
 ## 作品代码仓库
-https://github.com/David9199/Atlantic/invitations
+https://github.com/David9199/Atlantic.git
 
 ## 黑客松资料
 作品链接：https://atlantic-ocean-khaki.vercel.app/

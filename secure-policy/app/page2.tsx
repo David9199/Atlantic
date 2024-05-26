@@ -1,5 +1,7 @@
 "use client";
+
 import Image from "next/image";
+
 import WalletConnect from './WalletConnect';
 import MetaMaskAuth from "./component/metamask/metamask-auth.client";
 import Navbar from "./pages/Navbar";

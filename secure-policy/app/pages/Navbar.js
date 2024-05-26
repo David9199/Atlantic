@@ -1,7 +1,7 @@
 // components/Navbar.js
 import Link from 'next/link';
 import WalletConnect from '../WalletConnect';
-import Image from "next/image";
+
 
 
 export default function Navbar() {

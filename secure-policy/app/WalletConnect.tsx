@@ -5,10 +5,11 @@ import React, { useState } from 'react';
 import { ethers } from "ethers";
 
 function WalletConnect() {
+    const [walletInfo, setWalletInfo] = useState({ address: '', balance: '' });
+
     if (window.ethereum) { // 检查浏览器是否安装了支持Ethereum的插件，如MetaMask
         const provider = new ethers.BrowserProvider(window.ethereum)
 
-        const [walletInfo, setWalletInfo] = useState({ address: '', balance: '' });
         const connectWallet = async () => {
             try {
                 const accounts = await provider.send("eth_requestAccounts", []);
@@ -142,6 +143,7 @@ function WalletConnect() {
     //         {account && <p>Connected Account: {account}</p>}
     //     </div>
     // );
-}
+};
+
 
 export default WalletConnect;

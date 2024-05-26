@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 // import styles from "./metamask-auth.module.css";
-import AuthService from './AuthService';
+// import AuthService from './AuthService';
 
 import Web3 from 'web3';
 
@@ -78,6 +78,7 @@ type MetaMaskAuthProps = {
 
 // export default function MetaMaskAuth(onAddressChanged: (onAddressChanged: any) => void) {
 export default function MetaMaskAuth({ onAddressChanged }: MetaMaskAuthProps) {
+
     // console.log(onAddressChanged)
     const [userAddress, setUserAddress] = useState("");
     const [balance, setBalance] = useState("");

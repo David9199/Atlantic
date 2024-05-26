@@ -32,8 +32,8 @@ async function Block01() {
 
     // 解析Transfer事件的数据（变量在args中）
     console.log("\n2. 解析事件：")
-    const amount = ethers.formatUnits(ethers.getBigInt(transferEvents[0].args["amount"]), "ether");
-    console.log(`地址 ${transferEvents[0].args["from"]} 转账${amount} WETH 到地址 ${transferEvents[0].args["to"]}`)
+    // const amount = ethers.formatUnits(ethers.getBigInt(transferEvents[0].args["amount"]), "ether");
+    // console.log(`地址 ${transferEvents[0].args["from"]} 转账${amount} WETH 到地址 ${transferEvents[0].args["to"]}`)
 
     const formatAddress = (address: any) => {
         return `${address.substring(0, 4)}...${address.substring(address.length - 6)}`;

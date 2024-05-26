@@ -6,7 +6,7 @@
 暂时未开源
 
 ## 黑客松资料
-作品链接：https://devpost.com/software/meta
+作品链接：https://devpost.com/software/metap[
 
 
 ## 成员

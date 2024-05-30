@@ -6,7 +6,7 @@
 https://github.com/David9199/Atlantic.git
 
 ## 黑客松资料
-作品链接：https://atlantic-ocean-khaki.vercel.app/
+作品链接：https://atlantic.vercel.app/
 
 ## 团队名称
 大航海时代
